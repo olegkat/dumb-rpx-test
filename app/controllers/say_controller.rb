@@ -14,6 +14,7 @@ class SayController < ApplicationController
     @@app_id = 'bfobckokbkbkcmnpindg'
     @@rpx_host = 'rpxnow.com'
     @@rpx_host_port = '443'
+    @@rpxjs_host = 'rpxnow.com'
     @@rpx_scheme = 'https'
     @@rpx_use_ssl = true
 
@@ -23,6 +24,7 @@ class SayController < ApplicationController
     @@app_id = 'fmcmdepehoodohnndbng'
     @@rpx_host = 'oleg.janrain.com'
     @@rpx_host_port = '8080'
+    @@rpxjs_host = 'oleg.janrain.com:8080'
     @@rpx_scheme = 'http'
     @@rpx_use_ssl = false
   end
@@ -35,6 +37,7 @@ class SayController < ApplicationController
   end
 
   def goodbye
+    @rpxjs_host = @@rpxjs_host
     @rpx = @@rpx
     @api_key = @@api_key
     @app_id = @@app_id
