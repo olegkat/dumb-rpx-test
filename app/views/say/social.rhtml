@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Social widget</title>
+</head>
+<body>
+
+<script type="text/javascript">
+  var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
+  document.write(unescape("%3Cscript src='<%= @rpx_js_host %>/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+  RPXNOW.init({appId: '<%= @app_id %>',
+               xdReceiver: '/rpx_xdcomm.html'});
+</script>
+
+<a href="#" onclick="do_publish()">publish through <%= @app_name  %></a>
+
+<p>
+
+<form action="<%= @fb_publish_stream_url%>" method="post">
+  Message:
+  <input name="message" id="message" type="text" />
+  <br/>Attachment:
+  <input name="attachment" id="attachment" type="text" />
+  <br/>Action links:
+  <input name="action_links" id="action_links" type="text" />
+  <br/>Target ID:
+  <input name="target_id" id="target_id" type="text" />
+  <br/>
+  <input type="submit" value="Publish to Facebook" />
+</form>
+
+
+<script type="text/javascript">
+  function do_publish() {
+    RPXNOW.language_preference = 'ru';
+    RPXNOW.loadAndRun(['Social'], function () {
+        var activity = new RPXNOW.Social.Activity(
+            "Share your comment",
+            "commented on example.com",
+            "http://example.com/comments/<%= id = Time.now.to_i %>");
+        activity.setTitle("Title");
+        activity.setDescription("Description");
+        activity.setUserGeneratedContent("UGC");
+        activity.addActionLink("Go shoot yourself", "http://microsoft.com");
+        var media = new RPXNOW.Social.ImageMediaCollection();
+        media.addImage("http://ec.atdmt.com/b/NMMRTSHARPCU/180x150_Windows_Consumer_Intent_Generic_V2_3.26.10.jpg", "http://www.microsoft.com/en/us/default.aspx");
+        media.addImage("http://www.atomic-pizza.com/images/overlookatomicpizza.jpg", "http://bit.ly/3fkBwe");
+        activity.setMediaItem(media);
+        activity.addProviderUrl('facebook', 'http://example.com/comments/<%= id %>/fb');
+        activity.addProviderUrl('twitter', 'http://example.com/comments/<%= id %>/twatter');
+        //RPXNOW.Social.publishActivity(activity, {
+        //    //primaryKey: "<%= @primary_key %>",
+        //    //timestamp: <%= @timestamp %>,
+        //    //signature: "<%= @signature %>"
+        //});
+        RPXNOW.Social.publishActivity(activity);
+    });
+  }
+</script>
+
+</body>
+</html>

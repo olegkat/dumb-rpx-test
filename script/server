@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+default_port = 80
+
+if RAILS_ENV='development'
+  ARGV << "-p#{default_port}" unless ARGV.to_s.include?("-p")
+end
+
+require File.dirname(__FILE__) + '/../config/boot'
+require 'commands/server'

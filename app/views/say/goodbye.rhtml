@@ -1,0 +1,442 @@
+<html>
+<head>
+  <title>See You Later!</title>
+</head>
+<body>
+  <% if not @signed_in -%>
+  <p>
+    <a class="rpxnow" onclick="return false;" href="<%= @rpx_signin_url %>">
+<!--    <a href="<%= @rpx_signin_url %>"> -->
+    Sign in
+    </a>
+  </p>
+
+<!--  <iframe src="http://rrt.oleg.janrain.com:8080/openid/embed?token_url=http%3A%2F%2Foleg.janrain.com%2Fsay%2Fgoodbye&language_preference=ru&flags=stay_in_window"  scrolling="no"  frameBorder="no"  allowtransparency="true"  style="width:400px;height:240px"></iframe>-->
+
+  <p>
+  <form action="<%= h @facebook_set_app_properties_url %>" method="post">
+  <fieldset>
+    <legend>facebook_set_app_properties</legend>
+    <table>
+      <tr>
+        <td>fbAPIKey:</td>
+        <td><input type="text" name="fbAPIKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>fbSecret:</td>
+        <td><input type="text" name="fbSecret" value="" /><td/>
+      </tr>
+      <tr>
+        <td>fbAppID:</td>
+        <td><input type="text" name="fbAppID" value="" /><td/>
+      </tr>
+      <tr>
+        <td>emailPerm:</td>
+        <td><input type="text" name="emailPerm" value="true" /><td/>
+      </tr>
+      <tr>
+        <td>uninstallURL:</td>
+        <td><input type="text" name="uninstallURL" value="" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @set_status_url %>" method="post">
+  <fieldset>
+    <legend>set_status</legend>
+    <table>
+      <tr>
+        <td>device_token:</td>
+        <td><input type="text" name="device_token" value="4554be531fb23c1a1896bedb63c50df1f10a1d71" /><td/>
+      </tr>
+      <tr>
+        <td>status:</td>
+        <td><input type="textarea" name="status" value="test" /><td/>
+      </tr>
+    </table>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <% else -%>
+
+  <p>
+    <a href="<%= @signout_url %>">
+    Sign out
+    </a>
+  </p>
+
+
+  <p>
+  <form action="<%= h (@auth_info_url + '?format=json') %>" method="post">
+  <fieldset>
+    <legend>auth_info</legend>
+    <table>
+      <tr>
+        <td>extended:</td>
+        <td><input type="text" name="extended" value="true" /><td/>
+      </tr>
+<!--      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>-->
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="hidden" name="token" value="<%= @token %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @auth_infos_url %>" method="post">
+  <fieldset>
+    <legend>auth_infos</legend>
+    <table>
+      <tr>
+        <td>extended:</td>
+        <td><input type="text" name="extended" value="true" /><td/>
+      </tr>
+      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>
+      <tr>
+        <td>tokens:</td>
+        <td><input type="text" name="tokens" value="<%= @token %>,<%= @token %>"/><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @get_user_data_url %>" method="post">
+  <fieldset>
+    <legend>get_user_data</legend>
+    <table>
+      <tr>
+        <td>extended:</td>
+        <td><input type="text" name="extended" value="true" /><td/>
+      </tr>
+      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @get_contacts_url %>" method="post">
+  <fieldset>
+    <legend>get_contacts</legend>
+    <table>
+      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @set_status_url %>" method="post">
+  <fieldset>
+    <legend>set_status</legend>
+    <table>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+      <tr>
+        <td>status:</td>
+        <td><input type="textarea" name="status" value="test" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @activity_url %>" method="post">
+  <fieldset>
+    <legend>activity</legend>
+    <table>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+      <tr>
+        <td>activity:</td>
+        <td height=20><input type="textarea" name="activity" rows=20 value='{
+  "user_generated_content": "I thought you would appreciate my review&<;.",
+  "title": "A Critique of Atomic Pizza",
+  "action_links": [
+    {
+      "href": "http:\/\/example.com\/review\/write",
+      "text": "Write a review"
+    }
+  ],
+  "action": "wrote a review of Atomic Pizza",
+  "url": "http:\/\/example.com\/reviews\/12345\/",
+  "media": [
+    {
+      "href": "http:\/\/bit.ly\/3fkBwe",
+      "src": "http://www.atomic-pizza.com/images/overlookatomicpizza.jpg", //"http:\/\/bit.ly\/1nmIX9",
+      "type": "image"
+    }
+  ],
+  "description": "Atomic Pizza has a great atmosphere and great prices.",
+  "properties": {
+    "Location": {
+      "href": "http:\/\/bit.ly\/3fkBwe",
+      "text": "North Portland"
+    },
+    "Rating": "5 Stars"
+  }
+}' /><td/>
+      </tr>
+      <tr>
+        <td>location:</td>
+        <td><input type="text" name="location" value="" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @facebook_stream_publish_url %>" method="post">
+  <fieldset>
+    <legend>facebook/stream.publish</legend>
+    <table>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+      <tr>
+        <td>message:</td>
+        <td><input type="textarea" name="status" value="test" /><td/>
+      </tr>
+      <tr>
+        <td>attachment:</td>
+        <td height=10><input type="textarea" name="attachment" rows=8 value="{
+ 'name': 'i\'m bursting with joy',
+ 'href': ' http://bit.ly/187gO1',
+ 'caption': '{*actor*} rated the lolcat 5 stars',
+ 'description': 'a funny looking cat',
+ 'properties': { 'category': { 'text': 'humor', 'href': 'http://bit.ly/KYbaN'}, 'ratings': '5 stars' },
+ 'media': [{ 'type': 'image', 'src': 'http://icanhascheezburger.files.wordpress.com/2009/03/funny-pictures-your-cat-is-bursting-with-joy1.jpg', 'href': 'http://bit.ly/187gO1'}]
+}" /><td/>
+      </tr>
+      <tr>
+        <td>action_links:</td>
+        <td><input type="textarea" name="action_links" value='[{ "text": "Cool site", "href": "http://example.com"}]' /><td/>
+      </tr>
+      <tr>
+        <td>target_id:</td>
+        <td><input type="text" name="target_id" value="" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <%- end -%>
+
+
+  <p>
+  <form action="<%= h @map_url %>" method="post">
+  <fieldset>
+    <legend>map</legend>
+    <table>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+      <tr>
+        <td>primaryKey:</td>
+        <td><input type="text" name="primaryKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>overwrite:</td>
+        <td><input type="text" name="overwrite" value="false" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @unmap_url %>" method="post">
+  <fieldset>
+    <legend>unmap</legend>
+    <table>
+<!--      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+-->
+      <tr>
+        <td>all_identifiers:</td>
+        <td><input type="text" name="all_identifiers" value="false" /><td/>
+      </tr>
+      <tr>
+        <td>primaryKey:</td>
+        <td><input type="text" name="primaryKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>unlink:</td>
+        <td><input type="text" name="unlink" value="false" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @facebook_unlink_url %>" method="post">
+  <fieldset>
+    <legend>facebook_unlink</legend>
+    <table>
+      <tr>
+        <td>identifier:</td>
+        <td><input type="text" name="identifier" value="<%= @identifier %>" /><td/>
+      </tr>
+    </table>
+    <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @clone_url %>" method="post">
+  <fieldset>
+    <legend>clone</legend>
+    <table>
+      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>
+      <tr>
+        <td>partnerKey:</td>
+        <td><input type="text" name="partnerKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>domain:</td>
+        <td><input type="text" name="domain" value="" /><td/>
+      </tr>
+      <tr>
+        <td>displayName:</td>
+        <td><input type="text" name="displayName" value="" /><td/>
+      </tr>
+    </table>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <p>
+  <form action="<%= h @set_properties_url %>" method="post">
+  <fieldset>
+    <legend>set_properties</legend>
+    <table>
+      <tr>
+        <td>format:</td>
+        <td><input type="text" name="format" value="json" /><td/>
+      </tr>
+      <tr>
+        <td>apiKey:</td>
+        <td><input type="text" name="apiKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>provider:</td>
+        <td><input type="text" name="provider" value="" /><td/>
+      </tr>
+      <tr>
+        <td>facebookApiKey:</td>
+        <td><input type="text" name="facebookApiKey" value="" /><td/>
+      </tr>
+      <tr>
+        <td>facebookAppSecret:</td>
+        <td><input type="text" name="facebookAppSecret" value="" /><td/>
+      </tr>
+      <tr>
+        <td>facebookEnableOffineAccess:</td>
+        <td><input type="text" name="facebookEnableOffineAccess" value="true" /><td/>
+      </tr>
+      <tr>
+        <td>facebookRequestEmail:</td>
+        <td><input type="text" name="facebookRequestEmail" value="true" /><td/>
+      </tr>
+      <tr>
+        <td>facebookUninstallUrl:</td>
+        <td><input type="text" name="facebookUninstallUrl" value="" /><td/>
+      </tr>
+    </table>
+    <input type="submit" value="post" /><br/>
+  </fieldset>
+  </form>
+  </p>
+
+
+  <script type="text/javascript">
+    var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
+    document.write(unescape("%3Cscript src='" + rpxJsHost + "oleg.janrain.com:8080/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    RPXNOW.overlay = true;
+    //RPXNOW.language_preference = 'ja';
+    //RPXNOW.bp_channel = 'http://67.137.230.66/bus/1234567890/channel/666';
+    //RPXNOW.flags = 'stay_in_window';
+    RPXNOW.ssl = false;
+  </script>
+</body>
+</html>
