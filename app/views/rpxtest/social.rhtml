@@ -1,36 +1,22 @@
 <html>
 <head>
-  <title>Social widget</title>
+  <title>Social Widget Test</title>
 </head>
 <body>
 
 <script type="text/javascript">
   var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
-  document.write(unescape("%3Cscript src='<%= @rpx_js_host %>/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
+  document.write(unescape("%3Cscript src='" + rpxJsHost + "<%= RPX[:js_host_port] %>/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
 <script type="text/javascript">
-  RPXNOW.init({appId: '<%= @app_id %>',
+  RPXNOW.init({appId: '<%= RPX[:app_id] %>',
                xdReceiver: '/rpx_xdcomm.html'});
 </script>
 
 <a href="#" onclick="do_publish()">publish through <%= @app_name  %></a>
 
 <p>
-
-<form action="<%= @fb_publish_stream_url%>" method="post">
-  Message:
-  <input name="message" id="message" type="text" />
-  <br/>Attachment:
-  <input name="attachment" id="attachment" type="text" />
-  <br/>Action links:
-  <input name="action_links" id="action_links" type="text" />
-  <br/>Target ID:
-  <input name="target_id" id="target_id" type="text" />
-  <br/>
-  <input type="submit" value="Publish to Facebook" />
-</form>
-
 
 <script type="text/javascript">
   function do_publish() {

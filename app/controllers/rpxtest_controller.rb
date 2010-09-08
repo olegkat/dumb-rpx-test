@@ -35,16 +35,11 @@ class RpxtestController < ApplicationController
   end
 
   def social
-    @rpx = @@rpx
-    @rpx_js_host = @@rpx_js_host
     @app_name = RPX[:realm]
-    @app_id = @@app_id
-    data = @@api_key
-    @fb_publish_stream_url = "#{@@rpx_scheme}://#{RPX[:api_host]}/api/v2/facebook/stream.publish?#{data}"
     @timestamp = Time.now.to_i
     @primary_key = "123"
     base_string = "#{@timestamp.to_s}|#{@primary_key}"
-    @signature = Base64.encode64(OpenSSL::HMAC.digest('sha256', @@api_key, base_string))
+    @signature = Base64.encode64(OpenSSL::HMAC.digest('sha256', RPX[:api_key], base_string))
     @signature.chomp!
   end
 
