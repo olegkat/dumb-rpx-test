@@ -7,10 +7,6 @@ require 'cgi'
 class SayController < ApplicationController
   protect_from_forgery :except => [:goodbye]
 
-  def hello
-    @resp = params
-  end
-
   def goodbye
     @api = RPX[:api]
     @api_key = RPX[:api_key]
@@ -36,33 +32,6 @@ class SayController < ApplicationController
 
       @signout_url = url_for
     end
-  end
-
-  def setprops
-    http = Net::HTTP.new('oleg.janrain.com', 8080)
-    http.use_ssl = false
-    path = '/api/v3/app/facebook_set_app_properties'
-    data = @@api_key + "&emailDomain=janrain.com&emailPerm=true"
-    data += "&uninstallURL=" + CGI::escape("http://oleg.janrain.com:2345/?mtv_app=7890")
-    data += "&fbAPIKey=01404beea5667265a02f5b248ccf1f16"
-    data += "&fbSecret=fa27768698b9ec83f4ec6e2b5ed7f7e7"
-    data += "&fbAppID=111512492217339"
-    headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
-    @response = http.post(path, data, headers)
-  end
-
-  def fbpostrm
-    @params = params
-  end
-
-  def fboauth
-    redirect_to 'https://graph.facebook.com/oauth/authorize?client_id=111512492217339&redirect_uri=http://oleg.janrain.com/say/fboauth_cb'
-  end
-
-  def fboauth_cb
-    print "\n**** code: #{params[:code]}\n"
-    render :nothing => true
-#    "https://graph.facebook.com/oauth/access_token?client_id=111512492217339&redirect_uri=http://oleg.janrain.com/say/fboauth_cb&client_secret=fa27768698b9ec83f4ec6e2b5ed7f7e7&code=#{params[:code]}"
   end
 
   def social
