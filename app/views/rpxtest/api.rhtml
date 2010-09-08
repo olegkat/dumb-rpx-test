@@ -83,7 +83,7 @@
 
 
   <p>
-  <form action="<%= h (@api[:auth_info] + '?format=json') %>" method="post">
+  <form action="<%= h @api[:auth_info] %>" method="post">
   <fieldset>
     <legend>auth_info</legend>
     <table>
@@ -91,10 +91,10 @@
         <td>extended:</td>
         <td><input type="text" name="extended" value="true" /><td/>
       </tr>
-<!--      <tr>
+      <tr>
         <td>format:</td>
         <td><input type="text" name="format" value="json" /><td/>
-      </tr>-->
+      </tr>
     </table>
     <input type="hidden" name="apiKey" value="<%= @api_key %>"/>
     <input type="hidden" name="token" value="<%= @token %>"/>
