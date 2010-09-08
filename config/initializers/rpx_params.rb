@@ -1,5 +1,7 @@
 RPX = {}
 
+RPX[:embed] = true
+
 if true
   RPX[:api_host] = 'rpxnow.com'
   RPX[:api_scheme] = 'https'
@@ -23,6 +25,8 @@ end
 
 RPX[:signin_url] = "#{RPX[:api_scheme]}://#{RPX[:realm]}.#{RPX[:api_host]}" +
   (RPX[:api_port].blank? ? '' : ":#{RPX[:api_port]}") + '/openid/v2/signin'
+RPX[:embed_url] = "#{RPX[:api_scheme]}://#{RPX[:realm]}.#{RPX[:api_host]}" +
+  (RPX[:api_port].blank? ? '' : ":#{RPX[:api_port]}") + '/openid/embed'
 RPX[:api_url] = "#{RPX[:api_scheme]}://#{RPX[:api_host]}" +
   (RPX[:api_port].blank? ? '' : ":#{RPX[:api_port]}")
 RPX[:api_url_v2] = RPX[:api_url] + '/api/v2/'

@@ -17,7 +17,7 @@ class RpxtestController < ApplicationController
                               :action => "api",
                               :only_path => false)
       @rpx_signin_url = RPX[:signin_url] + "?token_url=#{CGI.escape(rpx_token_url)}"
-      print "#{@rpx_signin_url}\n\n"
+      @rpx_embed_url = RPX[:embed_url] + "?token_url=#{CGI.escape(rpx_token_url)}"
 
     else
       @signed_in = true

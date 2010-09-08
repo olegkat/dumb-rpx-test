@@ -4,14 +4,21 @@
 </head>
 <body>
   <% if not @signed_in -%>
+    <% if RPX[:embed] -%>
+  <iframe src="<%= @rpx_embed_url %>"
+           scrolling="no"
+           frameBorder="no"
+           allowtransparency="true"
+           style="width:400px;height:240px">
+  </iframe>
+
+    <% else -%>
   <p>
     <a class="rpxnow" onclick="return false;" href="<%= @rpx_signin_url %>">
-<!--    <a href="<%= @rpx_signin_url %>"> -->
     Sign in
     </a>
   </p>
-
-<!--  <iframe src="http://rrt.oleg.janrain.com:8080/openid/embed?token_url=http%3A%2F%2Foleg.janrain.com%2Frpxtest%2Fapi&language_preference=ru&flags=stay_in_window"  scrolling="no"  frameBorder="no"  allowtransparency="true"  style="width:400px;height:240px"></iframe>-->
+    <% end -%>
 
   <p>
   <form action="<%= h @api[:facebook_set_app_properties] %>" method="post">
