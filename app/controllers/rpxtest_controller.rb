@@ -5,7 +5,7 @@ require 'net/https'
 require 'cgi'
 
 class RpxtestController < ApplicationController
-  protect_from_forgery :except => [:goodbye]
+  protect_from_forgery :except => [:api]
 
   def api
     @api = RPX[:api]
