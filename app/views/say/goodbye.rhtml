@@ -14,7 +14,7 @@
 <!--  <iframe src="http://rrt.oleg.janrain.com:8080/openid/embed?token_url=http%3A%2F%2Foleg.janrain.com%2Fsay%2Fgoodbye&language_preference=ru&flags=stay_in_window"  scrolling="no"  frameBorder="no"  allowtransparency="true"  style="width:400px;height:240px"></iframe>-->
 
   <p>
-  <form action="<%= h @facebook_set_app_properties_url %>" method="post">
+  <form action="<%= h @api[:facebook_set_app_properties] %>" method="post">
   <fieldset>
     <legend>facebook_set_app_properties</legend>
     <table>
@@ -47,7 +47,7 @@
 
 
   <p>
-  <form action="<%= h @set_status_url %>" method="post">
+  <form action="<%= h @api[:set_status] %>" method="post">
   <fieldset>
     <legend>set_status</legend>
     <table>
@@ -76,7 +76,7 @@
 
 
   <p>
-  <form action="<%= h (@auth_info_url + '?format=json') %>" method="post">
+  <form action="<%= h (@api[:auth_info] + '?format=json') %>" method="post">
   <fieldset>
     <legend>auth_info</legend>
     <table>
@@ -98,7 +98,7 @@
 
 
   <p>
-  <form action="<%= h @auth_infos_url %>" method="post">
+  <form action="<%= h @api[:auth_infos] %>" method="post">
   <fieldset>
     <legend>auth_infos</legend>
     <table>
@@ -123,7 +123,7 @@
 
 
   <p>
-  <form action="<%= h @get_user_data_url %>" method="post">
+  <form action="<%= h @api[:get_user_data] %>" method="post">
   <fieldset>
     <legend>get_user_data</legend>
     <table>
@@ -148,7 +148,7 @@
 
 
   <p>
-  <form action="<%= h @get_contacts_url %>" method="post">
+  <form action="<%= h @api[:get_contacts] %>" method="post">
   <fieldset>
     <legend>get_contacts</legend>
     <table>
@@ -169,7 +169,7 @@
 
 
   <p>
-  <form action="<%= h @set_status_url %>" method="post">
+  <form action="<%= h @api[:set_status] %>" method="post">
   <fieldset>
     <legend>set_status</legend>
     <table>
@@ -190,7 +190,7 @@
 
 
   <p>
-  <form action="<%= h @activity_url %>" method="post">
+  <form action="<%= h @api[:activity] %>" method="post">
   <fieldset>
     <legend>activity</legend>
     <table>
@@ -241,7 +241,7 @@
 
 
   <p>
-  <form action="<%= h @facebook_stream_publish_url %>" method="post">
+  <form action="<%= h @api[:facebook_stream_publish] %>" method="post">
   <fieldset>
     <legend>facebook/stream.publish</legend>
     <table>
@@ -284,7 +284,7 @@
 
 
   <p>
-  <form action="<%= h @map_url %>" method="post">
+  <form action="<%= h @api[:map] %>" method="post">
   <fieldset>
     <legend>map</legend>
     <table>
@@ -309,7 +309,7 @@
 
 
   <p>
-  <form action="<%= h @unmap_url %>" method="post">
+  <form action="<%= h @api[:unmap] %>" method="post">
   <fieldset>
     <legend>unmap</legend>
     <table>
@@ -339,7 +339,7 @@
 
 
   <p>
-  <form action="<%= h @facebook_unlink_url %>" method="post">
+  <form action="<%= h @api[:facebook_unlink] %>" method="post">
   <fieldset>
     <legend>facebook_unlink</legend>
     <table>
@@ -356,7 +356,7 @@
 
 
   <p>
-  <form action="<%= h @clone_url %>" method="post">
+  <form action="<%= h @api[:clone] %>" method="post">
   <fieldset>
     <legend>clone</legend>
     <table>
@@ -384,7 +384,7 @@
 
 
   <p>
-  <form action="<%= h @set_properties_url %>" method="post">
+  <form action="<%= h @api[:set_properties] %>" method="post">
   <fieldset>
     <legend>set_properties</legend>
     <table>
@@ -429,7 +429,7 @@
 
   <script type="text/javascript">
     var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
-    document.write(unescape("%3Cscript src='" + rpxJsHost + "<%= @rpxjs_host %>/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
+    document.write(unescape("%3Cscript src='" + rpxJsHost + "<%= RPX[:js_host_port] %>/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
   <script type="text/javascript">
     RPXNOW.overlay = true;
