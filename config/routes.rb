@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.connect    '/rpx_xdcomm.html', :controller => 'say', :action => 'rpx_xdcomm'
+  map.connect    '/rpx_xdcomm.html', :controller => 'rpxtest', :action => 'rpx_xdcomm'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

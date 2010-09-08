@@ -4,17 +4,17 @@ require 'net/http'
 require 'net/https'
 require 'cgi'
 
-class SayController < ApplicationController
+class RpxtestController < ApplicationController
   protect_from_forgery :except => [:goodbye]
 
-  def goodbye
+  def api
     @api = RPX[:api]
     @api_key = RPX[:api_key]
 
     if !params[:token]
       @signed_in = false
-      rpx_token_url = url_for(:controller => "say",
-                              :action => "goodbye",
+      rpx_token_url = url_for(:controller => "rpxtest",
+                              :action => "api",
                               :only_path => false)
       @rpx_signin_url = RPX[:signin_url] + "?token_url=#{CGI.escape(rpx_token_url)}"
       print "#{@rpx_signin_url}\n\n"
